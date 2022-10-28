@@ -1,0 +1,14 @@
+
+
+.form
+{
+    width: 50%;
+    height: 500px;
+    background-color: E3D7D7;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
