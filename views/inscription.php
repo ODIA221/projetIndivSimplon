@@ -3,25 +3,21 @@
 <?php include_once("include.php");?>
 <!-- inclusion css boostrap -->
 
+<!-- inclusion controller -->
+<?php include_once("../controllers/trtmentInscript.php");?>
+<!-- inclusion controller -->
 
-<br>
-<br>
-
-
-<!-- inclusion css boostrap -->
-<?php include_once("include.php");?>
-<!-- inclusion css boostrap -->
 
 <div class="container form">
   <!--   <div>
         <H1>Inscription</H1>
     </div> -->
     <div class="container">
-                <!-- message connexion réeussie -->
-                <small id="mdp#"></small>
+        <!-- message connexion réeussie -->
+            <small id="mdp#"></small>
         <!-- message connexion réeussie -->
         <!-- message connexion réeussie -->
-              <small id="mailValide"></small>
+            <small id="mailValide"></small>
         <!-- message connexion réeussie -->
 
     <form action="../controllers/trtmentInscript.php" method="POST" id="inscription">
@@ -50,12 +46,12 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="mdpIncript">Mot de passe</label>
-                <input type="text" class="form-control" name="mdpIncript" id="mdpIncript">
+                <label for="mdpInscript">Mot de passe</label>
+                <input type="password" class="form-control" name="mdpInscript" id="mdpInscript">
             </div>
             <div class="form-group col-md-6">
-                <label for="mdpConfirm">Confirmer mot de passe</label>
-                <input type="text" class="form-control" name="mdpConfirm" id="mdpConfirm">
+                <label for="confirmMdp">Confirmer mot de passe</label>
+                <input type="password" class="form-control" name="confirmMdp" id="confirmMdp">
             </div>
         </div>
         <div class="form-row">
@@ -67,7 +63,7 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-primary" id="btnConnect">S'inscrire</button>
+                <button type="submit" class="btn btn-primary" name="btnInscript">S'inscrire</button>
                 ||
                 <span><a href="connexion.php">Se connecter</a></span>
             </div>

@@ -1,26 +1,35 @@
 
+
+<!-- inclusion controller -->
+<?php include_once("../controllers/trtmentConnexion.php");?>
+<!-- inclusion controller -->
+
+<!-- inclusion fichier sécurité -->
+
+<!-- inclusion fichier sécurité -->
+
+
 <!-- inclusion css boostrap -->
     <?php include_once("include.php");?>
 <!-- inclusion css boostrap -->
 
 
-<br>
-<br>
-
 <div class="container form">
-  <!--   <div>
+    <!--   <div>
         <H1>Connexion</H1>
     </div> -->
     <div class="container">
         <!-- message connexion réeussie -->
               <small id="mailValide"></small>
         <!-- message connexion réeussie -->
-
-
+        <!-- Forrmulaire -->
         <form action="../controllers/trtmentConnexion.php"  method="POST" id="connexion" name="connexion">
             <div class="form-group">
                 <label for="mailConnect">Email</label>
                 <input type="text" class="form-control" id="mailConnect"  name="mailConnect">
+                
+<?php if (isset($mailPris)) {echo "mail pris !";} ;?>
+
             </div>
             <div class="form-group">
                 <label for="mdpConnect">Mot de passe</label>
