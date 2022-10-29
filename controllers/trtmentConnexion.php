@@ -1,6 +1,9 @@
 
 <?php
 
+/* démarrer les sessions */
+session_start();
+
 /**
  *  inclusion du fichier de connxion à la bd 
 */
@@ -17,7 +20,7 @@ if (isset($_POST['btnConnect'])) {
 
             //recupération des données saisies
             $mailConnect = htmlspecialchars($_POST['mailConnect']);
-            $mdpConnect = ($_POST['mdpConnect']);
+            $mdpConnect = htmlspecialchars(($_POST['mdpConnect']));
 
             //Affichage des données recupérées
             echo ("$mailConnect, $mdpConnect");
@@ -29,15 +32,50 @@ if (isset($_POST['btnConnect'])) {
                 exit;
             }
 
-            //insertion dans la base de données
-            $insert = $bd->prepare("INSERT INTO utilisateur(mail, mdp) VALUES(?,?) ");
-            //execution de la requette insertion
-            $insert->execute(array($mailConnect, $mdpConnect));
+            //Rechercher si user existe
+            $chearch = $bd -> prepare('SELECT * FROM utilisateur WHERE mail = ?  ');
+            $chearch -> execute(array($mailConnect));
+
+
+            //insertion dans la base de données si l'utilsateur existe pas sinon msgErrors
+            if ($chearch -> rowCount() > 0) {
+
+                //afficher les users recupérer via id
+                $infoUsers = $chearch -> fetch();
+
+                //vérifier si le mdp entrer correspond au mdp hasher
+                if (password_verify($mdpConnect, $infoUsers['mdp'])) {
+
+                    //autentier user si less identifiants sont bonnes
+
+                    $_SESSION['auth'] = true;
+                    $_SESSION['id'] = $infoUsers['$id'];
+                    $_SESSION['nom'] = $infoUsers['$nom'];
+                    $_SESSION['prenom'] = $infoUsers['$prenom'];
+        
+                    //redirection de la personne connecter
+                    header('location: ../views/admin.php');
+                    exit; 
+        
+                    
+                }else {
+                    $msgErros ='Votre mot de passe est incorrecte !';
+                }
+
             
+
+
+                
+            } else{
+                $mailPris ='Le mail ne correspond pas à ce compte !';
+                header('location: ../views/connexion.php');
+                exit;
+
+            }
         
             
         }else {
-            $msgErrors ='Ce chmaps est obligatoire !';
+            $msgErros ='Ce chmaps est obligatoire !';
 /*             header("location: ../views/connexion.php?success= $msgErrors;");
             exit;
              */

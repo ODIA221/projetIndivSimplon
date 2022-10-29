@@ -1,5 +1,8 @@
 <?php
 
+/* démarrer les sessions */
+session_start();
+
 
 
 /**
@@ -7,43 +10,88 @@
 */
 require_once("../config/bd.php");
 
-//Tableau des messages D'erreurs
-/* $msgErrors =[]; */
-
-
 
 //Traiement du formulaire d'inscrion
 if (isset($_POST['btnInscript'])) {
 
     //vérifier si les champs sont actionné
-    if (isset($_POST['nom'])  && isset($_POST['prenom']) && isset($_POST['mailInscrip']) && isset($_POST['role']) && isset($_POST['mdpInscrip']) && isset($_POST['confirmMdp'])) {
+    if (isset($_POST['nom'])  && isset($_POST['prenom']) && isset($_POST['mailInscript']) && isset($_POST['role']) && isset($_POST['mdpInscript'])) {
         //Vérification  contenus des champs de saisies
-        if (!empty($_POST['nom'])  && !empty($_POST['prenom']) && !empty($_POST['mailInscrip']) && !empty($_POST['role']) && !empty($_POST['mdpInscrip']) && !empty($_POST['confirmMdp'])) {
+        if (!empty($_POST['nom'])  && !empty($_POST['prenom']) && !empty($_POST['mailInscript']) && !empty($_POST['role']) && !empty($_POST['mdpInscript'])) {
             
             $nom = htmlspecialchars($_POST['nom']) ;
             $prenom = htmlspecialchars($_POST['prenom']) ;
-            $mailInscrip = htmlspecialchars($_POST['mailInscrip']);
-            $role = htmlspecialchars(trim($_POST['role']));
-            $mdpInscrip = password_hash($_POST['mdpInscrip'], PASSWORD_DEFAULT);
+            $mailInscript = htmlspecialchars($_POST['mailInscript']);
+            $role = htmlspecialchars($_POST['role']);
+            $mdpInscript = password_hash($_POST['mdpInscript'], PASSWORD_DEFAULT);
+           /*  $confirmMdp = ($_POST['confirmMdp']) */;
             $photo = htmlspecialchars($_POST['photo']);
 
-            
-            //Vérification format du mail
-            if (!filter_var($mailInscrip, FILTER_VALIDATE_EMAIL)){
+            //afficher les données recuperer
+            echo("$nom, $prenom, $mailInscript, $role, $mdpInscript, $photo");
+
+
+             //Vérification format du mail
+             if (!filter_var($mailInscript, FILTER_VALIDATE_EMAIL)){
                 $error = "email incorrect";
-                include("../views/inscription.php");
+                include("../views/connexion.php");
                 exit;
             }
 
-            //afficher les données recuperer
-            echo("$nom, $prenom, $mailInscrip, $role, $mdp");
 
-            //Inscertion à partir du formulaire dans la base
+            //Rechercher si user existe
+            $chearch = $bd -> prepare('SELECT * FROM utilisateur WHERE mail = ?  ');
+            $chearch -> execute(array($mailInscript));
+
+
+            //insertion dans la base de données si l'utilsateur existe pas sinon msgErrors
+            if ($chearch -> rowCount() == 0) {
+
+
+           //Inscertion à partir du formulaire dans la base
             /* $insert = ("INSERT INTO users(nom, prenom, mail, roles, mdp) VALUES($nom, $prenom, $mail,$role, $mdp) "); */
             $insert = $bd->prepare("INSERT INTO utilisateur(nom, prenom, mail, roles, mdp,photo) VALUES(?,?,?,?,?,?) ");
             //execution de la requette insertion
-            $insert->execute(array($nom, $prenom, $mailInscrip,$role, $mdpInscrip,$photo));
+            $insert->execute(array($nom, $prenom, $mailInscript, $role, $mdpInscript,$photo));
                         
+
+            //Recupérer les infos utilisateurs connecter
+            $infoId = $bd -> prepare('SELECT id, nom prenom FROM utilisateur WHERE nom = ? AND prenom = ? AND mail = ? ');
+            $infoId -> execute(array($nom, $prenom, $mailInscript ));
+
+            //afficher les users recupérer via id
+            $infoUsers = $infoId -> fetch();
+
+            $_SESSION['auth'] = true;
+            $_SESSION['id'] = $infoUsers['$id'];
+            $_SESSION['nom'] = $infoUsers['$nom'];
+            $_SESSION['prenom'] = $infoUsers['$prenom'];
+
+            //redirection de la personne connecter
+            header('location: ../views/connexion.php');
+            exit; 
+
+            //auto générer matricule
+
+            $matricule = "A-". $bd -> lastInsertId();
+            $update = "UPDATE utilisateur SET matricule = $matricule WHERE  mail = $mailInscript ";
+            $mat = $bd -> prepare($update);
+            $mat -> execute();
+
+
+
+            } else{
+                $mailPris = 'Le mail existe déja !';
+                header('location: ../views/inscription.php');
+                exit;
+
+            }
+            
+            
+         
+
+
+
         }else {
             $msgErrors= "Ce champs est obligatoire !";
         }
