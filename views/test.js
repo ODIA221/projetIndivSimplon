@@ -4,6 +4,8 @@ document.getElementById("inscription").addEventListener("submit", function(e){
     var errors ;
     var inputs = document.getElementsByTagName("input");
     var email = document.getElementById("mailInscript");  
+    var mdpIncript = document.getElementById("mdpIncript");  
+    var mdpConfirm = document.getElementById("mdpConfirm"); 
 
 
     for (let i = 0; i< inputs.length -1; i++) {
@@ -13,26 +15,33 @@ document.getElementById("inscription").addEventListener("submit", function(e){
         }
     }
 
-    if (email.value.indexOf("@", 0) < 0)                 
+    if (errors) {
+        e.preventDefault();
+        document.getElementById("errors").innerHTML = errors;
+        return false;
+
+    }
+    else if (email.value.indexOf("@", 0) < 0)                 
     { 
         e.preventDefault();
         document.getElementById("mailValide").innerHTML = "Le mail est inavlide !";
         email.focus(); 
         return false; 
     }    
-    if (email.value.indexOf(".", 0) < 0)                 
+    else if (email.value.indexOf(".", 0) < 0)                 
     { 
         e.preventDefault();
         document.getElementById("mailValide").innerHTML = "Le mail est inavlide !"; 
         email.focus(); 
         return false; 
-    }  
-    if (errors) {
+    } 
+    else if (mdpConfirm != mdpIncript) {
         e.preventDefault();
-        document.getElementById("errors").innerHTML = errors;
+        document.getElementById("mdp#").innerHTML = "Mots de passe non Identique !";
         return false;
 
-    }else{
+    }
+    else{
         document.getElementById("success").innerHTML = "connexion Réussie !";
 
     }
