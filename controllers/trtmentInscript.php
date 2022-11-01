@@ -1,7 +1,6 @@
 <?php
 
 /* démarrer les sessions */
-session_start();
 
 
 
@@ -53,11 +52,22 @@ if (isset($_POST['btnInscript'])) {
             $insert = $bd->prepare("INSERT INTO utilisateur(nom, prenom, mail, roles, mdp,photo) VALUES(?,?,?,?,?,?) ");
             //execution de la requette insertion
             $insert->execute(array($nom, $prenom, $mailInscript, $role, $mdpInscript,$photo));
+
+            //Auto incrémenté le matricule
+                $matricule = "A0-" . $bd -> lastInsertId();
+                $mat = ("UPDATE utilisateur SET matricule = '$matricule' WHERE mail = '$mdpInscript'");
+                $modifMat = $bd -> prepare ($mat) ;
+                $modifMat -> execute();
+          
+
+
+
+
                         
 
             //Recupérer les infos utilisateurs connecter
-            $infoId = $bd -> prepare('SELECT id, nom prenom FROM utilisateur WHERE nom = ? AND prenom = ? AND mail = ? ');
-            $infoId -> execute(array($nom, $prenom, $mailInscript ));
+            $infoId = $bd -> prepare('SELECT id, nom prenom, mail, roles FROM utilisateur WHERE nom = ? AND prenom = ? AND mail = ? AND roles = ?');
+            $infoId -> execute(array($nom, $prenom, $mailInscript, $role ));
 
             //afficher les users recupérer via id
             $infoUsers = $infoId -> fetch();
@@ -66,18 +76,12 @@ if (isset($_POST['btnInscript'])) {
             $_SESSION['id'] = $infoUsers['$id'];
             $_SESSION['nom'] = $infoUsers['$nom'];
             $_SESSION['prenom'] = $infoUsers['$prenom'];
+            $_SESSION['mail'] = $infoUsers['$mail'];
+            $_SESSION['roles'] = $infoUsers['$roles'];
 
             //redirection de la personne connecter
             header('location: ../views/connexion.php');
             exit; 
-
-            //auto générer matricule
-
-            $matricule = "A-". $bd -> lastInsertId();
-            $update = "UPDATE utilisateur SET matricule = $matricule WHERE  mail = $mailInscript ";
-            $mat = $bd -> prepare($update);
-            $mat -> execute();
-
 
 
             } else{
