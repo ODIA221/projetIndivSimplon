@@ -19,13 +19,13 @@
 
 
 <div class="container form">
-      <div class="descTitre">
+<!--       <div class="descTitre">
         <H1>Connexion</H1>
-    </div>
+    </div> -->
     <div class="container">
-        <!-- message connexion réeussie -->
-              <small id="mailValide"></small>
-        <!-- message connexion réeussie -->
+        <!-- message mail invalide -->
+              <small id="mailValide" style="color: red"></small>
+        <!-- message mail invalide -->
         <!-- Forrmulaire -->
         <form action="../controllers/trtmentConnexion.php"  method="POST" id="connexion" name="connexion">
             <div class="form-group">
@@ -52,11 +52,11 @@
             }else{
                 ?>
                     <!-- message connexion réeussie -->
-                    <small id="success"></small>
+                    <small id="success" style="color: green"></small>
                     <!-- message connexion réeussie -->
-                    <!-- message connexion réeussie -->
-                    <small id="errors"></small>
-                    <!-- message connexion réeussie -->
+                    <!-- message erreur chmps vide -->
+                    <small id="errors" style="color: red"></small>
+                    <!-- message erreur chmps vide -->
                 <?php
             }
             ?>

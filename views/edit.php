@@ -4,39 +4,52 @@
     require_once('../config/bd.php');
     include_once("include.php");
 
-    include_once('../controllers/trtmentInscript.php');
     
 ?>
 <!-- inclusion css boostrap -->
 
-<!-- Modifier -->
+<!-- Modifier  inscription  -->
 <?php
 
 if (isset($_POST['btnModifier'])) {
 
     $id = $_GET['id'];
 
+    $nom = htmlspecialchars($_POST['nom']) ;
+    $prenom = htmlspecialchars($_POST['prenom']) ;
+    $mailModif = htmlspecialchars($_POST['mailModif']);
+    $role = htmlspecialchars($_POST['role']);
+    $mdpModif = password_hash($_POST['mdpModif'], PASSWORD_DEFAULT);
+   /*  $confirmMdp = ($_POST['confirmMdp']) */;
+    $photo = htmlspecialchars($_POST['photo']);
+
+
+
     //Rechercher si user existe
     $chearcher = ('SELECT * FROM utilisateur WHERE id = $id ');
     $chearch = $bd -> query($chearcher);
 
-    //insertion dans la base de données si l'utilsateur existe pas sinon msgErrors
-    if ($chearch -> rowCount() > 0) {
+
+    //modification des inscriptions
+   
 
         $id = $_GET['id'];
 
-        $req = "UDATE utilisateur SET
+        $req = "UPDATE utilisateur SET
             nom = '$nom',
             prenom = '$prenom',
-            mail = '$mailInscript';
+            mail = '$mailModif',
             roles = '$role',
-            mdp = '$mdpInscript';
+            mdp = '$mdpModif',
+            photo = '$photo'
             WHERE id = '$id' "; 
          $upadate = $bd -> query($req); 
         if($upadate){
             header("location: admin.php");
         }
-    }
+  
+
+
    
 
 
@@ -72,7 +85,7 @@ if (isset($_POST['btnModifier'])) {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nom">Nom</label>
-                <input type="text" class="form-control" name="nom" id="nom" value="<?= $chearch['nom'] ;?>" >
+                <input type="text" class="form-control" name="nom" id="nom" value="<?= '$nom'?>;" >
             </div>
             <div class="form-group col-md-6">
                 <label for="prenom">Prénom</label>
