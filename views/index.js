@@ -17,14 +17,14 @@ document.getElementById("connexion").addEventListener("submit", function(e){
     if (email.value.indexOf("@", 0) < 0)                 
     { 
         e.preventDefault();
-        document.getElementById("mailValide").innerHTML = "Le mail est inavlide !";
+        document.getElementById("mailValide").style.color("red").innerHTML = "Le mail est inavlide !";
         email.focus(); 
         return false; 
     }    
     if (email.value.indexOf(".", 0) < 0)                 
     { 
         e.preventDefault();
-        document.getElementById("mailValide").innerHTML = "Le mail est inavlide !"; 
+        document.getElementById("mailValide").style.color("red").innerHTML = "Le mail est inavlide !"; 
         email.focus(); 
         return false; 
     }  
@@ -34,7 +34,7 @@ document.getElementById("connexion").addEventListener("submit", function(e){
         return false;
 
     }else{
-        document.getElementById("success").innerHTML = "connexion Réussie !";
+        document.getElementById("success").style.color("green").innerHTML = "connexion Réussie !";
 
     }
 

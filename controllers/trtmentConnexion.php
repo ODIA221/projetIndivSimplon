@@ -2,12 +2,13 @@
 <?php
 
 /* démarrer les sessions */
-session_start();
 
 /**
  *  inclusion du fichier de connxion à la bd 
 */
 require_once("../config/bd.php");
+
+$msgErros;
 
 
 //Vérifier si le bouton connecter est actionné
@@ -52,6 +53,9 @@ if (isset($_POST['btnConnect'])) {
                     $_SESSION['id'] = $infoUsers['$id'];
                     $_SESSION['nom'] = $infoUsers['$nom'];
                     $_SESSION['prenom'] = $infoUsers['$prenom'];
+                    $_SESSION['mail'] = $infoUsers['$mail'];
+                    $_SESSION['roles'] = $infoUsers['$roles'];
+                    $_SESSION['photo'] = $infoUsers['$photo'];
         
                     //redirection de la personne connecter
                     header('location: ../views/admin.php');
@@ -59,7 +63,11 @@ if (isset($_POST['btnConnect'])) {
         
                     
                 }else {
-                    $msgErros ='Votre mot de passe est incorrecte !';
+                    $msgErros ='Votre mot de passe est incorrect !';
+                    //redirection de la personne connecter
+                    header('location: ../views/connexion.php');
+                    exit; 
+
                 }
 
             

@@ -1,7 +1,9 @@
 
 
 <!-- inclusion controller -->
-<?php include_once("../controllers/trtmentConnexion.php");?>
+<?php
+    include_once("../controllers/trtmentConnexion.php");
+     ?>
 <!-- inclusion controller -->
 
 <!-- inclusion fichier sécurité -->
@@ -13,11 +15,13 @@
     <?php include_once("include.php");?>
 <!-- inclusion css boostrap -->
 
+<!-- erreurs -->
+
 
 <div class="container form">
-    <!--   <div>
+      <div class="descTitre">
         <H1>Connexion</H1>
-    </div> -->
+    </div>
     <div class="container">
         <!-- message connexion réeussie -->
               <small id="mailValide"></small>
@@ -26,7 +30,7 @@
         <form action="../controllers/trtmentConnexion.php"  method="POST" id="connexion" name="connexion">
             <div class="form-group">
                 <label for="mailConnect">Email</label>
-                <input type="text" class="form-control" id="mailConnect"  name="mailConnect">
+                <input type="mail" class="form-control" id="mailConnect"  name="mailConnect">
                 
 <?php if (isset($mailPris)) {echo "mail pris !";} ;?>
 
@@ -42,13 +46,20 @@
             </div>
         </form>
         <div>
-            <!-- message connexion réeussie -->
-            <small id="success"></small>
-            <!-- message connexion réeussie -->
-            <!-- message connexion réeussie -->
+            <?php
+            if (isset($msgErros)) {
+                echo '<p>' .$msgErros . '</p>';
+            }else{
+                ?>
+                    <!-- message connexion réeussie -->
+                    <small id="success"></small>
+                    <!-- message connexion réeussie -->
+                    <!-- message connexion réeussie -->
                     <small id="errors"></small>
-            <!-- message connexion réeussie -->
-
+                    <!-- message connexion réeussie -->
+                <?php
+            }
+            ?>
         </div>
 
     </div>
