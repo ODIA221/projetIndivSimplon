@@ -15,12 +15,12 @@
         <H1>Inscription</H1>
     </div> -->
     <div class="container">
-        <!-- message connexion réeussie -->
-            <small id="mdp#"></small>
-        <!-- message connexion réeussie -->
-        <!-- message connexion réeussie -->
-            <small id="mailValide"></small>
-        <!-- message connexion réeussie -->
+        <!-- message mot de pass différent -->
+            <small id="mdp#" style="color: red"></small>
+        <!-- message mot de pass différent -->
+        <!-- message mail invalide -->
+            <small id="mailValide" style="color: red"></small>
+        <!-- message mail invalide -->
 
     <form action="../controllers/trtmentInscript.php" method="POST" id="inscription">
         <div class="form-row">
@@ -73,11 +73,11 @@
         
         <div>
             <!-- message connexion réeussie -->
-            <small id="success"></small>
+            <H1 id="success" style="color: green"></H1>
             <!-- message connexion réeussie -->
-            <!-- message connexion réeussie -->
-                    <small id="errors"></small>
-            <!-- message connexion réeussie -->
+            <!-- message erreurs champs -->
+            <small id="errors" style="color: red"></small>
+            <!-- message erreurs champs -->
 
         </div>
     

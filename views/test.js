@@ -1,6 +1,7 @@
 document.getElementById("inscription").addEventListener("submit", function(e){
 
 
+
     var errors ;
     var inputs = document.getElementsByTagName("input");
     var email = document.getElementById("mailInscript");  
@@ -10,7 +11,7 @@ document.getElementById("inscription").addEventListener("submit", function(e){
 
     for (let i = 0; i< inputs.length -1; i++) {
         if (!inputs[i].value.trim()) {
-            errors = "les champs avec astérix sont obligatoire !";
+            errors = ("les champs avec astérix sont obligatoire !");
             
         }
     }
@@ -42,7 +43,8 @@ document.getElementById("inscription").addEventListener("submit", function(e){
 
     }
     else{
-        document.getElementById("success").innerHTML = "connexion Réussie !";
+        setTimeout(document.getElementById("success").innerHTML = "connexion Réussie !", 10000);
+        
 
     }
 
