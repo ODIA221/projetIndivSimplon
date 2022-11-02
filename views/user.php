@@ -63,15 +63,14 @@
                         <td><?= $row['roles']; ?></td>
                     </tr>
                 <?php
-            }
-            
-        
-        
-                            
+            }                            
         } else {
 
             echo "Aucune données n'a été trouvée";
-            
+            ?>
+            <br>
+            <br>
+            <?php           
         }   
     ?>
     </table>
@@ -112,10 +111,3 @@
 </div>
 
 <!-- /footer -->
-
-<?php
-    include('../models/crud.php');
-    $rows = getUsers();
-    tableAffiche($rows, );
-
-?>
