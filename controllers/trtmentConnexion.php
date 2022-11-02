@@ -58,8 +58,14 @@ if (isset($_POST['btnConnect'])) {
                     $_SESSION['photo'] = $infoUsers['$photo'];
         
                     //redirection de la personne connecter
-                    header('location: ../views/admin.php');
-                    exit; 
+                    if ($infoUsers['roles'] == "Admin") {
+                        header('location: ../views/admin.php');
+                        exit; 
+                    }else {
+                        header('location: ../views/user.php');
+                        exit; 
+                    }
+                   
         
                     
                 }else {
