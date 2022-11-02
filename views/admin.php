@@ -1,4 +1,4 @@
-<!-- fichier css et boostrap -->
+<!---->
 <?php 
     /*bd*/
     include_once('../config/bd.php');
@@ -6,9 +6,8 @@
     include('include.php');
     /* les inclusions pour traiment backend */
     include('../controllers/afficherBd.php');
-    /** */
-
-
+    /**include recherche */
+    include_once("../controllers/recherche.php");
     /* les inclusions sécurité */
 ?>
 <!-- fichier css et boostrap -->
@@ -47,12 +46,17 @@
     <!-- barre de recherche -->
     <div class="container table-responsive-sm">
         <div  class="container search">
-            <form class="search" action="" method="POST">
+            <form class="search" action="" method="GET">
                 <input type="search" id="search_emp_input" name="recherche" placeholder="recherche..." required  size=50>
-                <input id="search_emp_button" type="submit" value="recherche">
+                <input id="search_emp_button" type="submit" value="recherche" name="btnRecherche">
             </form>
         </div>
+
         <br>
+        <!-- afficherles résultats de recherches -->
+        <?php
+        ?>
+        <!-- fin recherche -->
         <br>
     <!-- /barre de recherche -->
     <!-- afficher les éléments de la bases dans un tab -->
@@ -96,11 +100,7 @@
                         </div>   
                     </tr>
                 <?php
-            }
-            
-        
-        
-                            
+            }                    
         } else {
 
             echo "Aucune données n'a été trouvée";
