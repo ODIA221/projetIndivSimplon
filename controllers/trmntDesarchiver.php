@@ -12,12 +12,12 @@ $id = $_GET['id'];
 /* $delete = ("DELETE FROM utilisateur WHERE id = '$id'");
 $execDelete = $bd -> query($delete);
  */
-$etat = 1;
+$etat = 0;
 $mat = ("UPDATE utilisateur SET etat = '$etat' WHERE id = '$id'");
 $modifMat = $bd -> query ($mat) ;
 
 //redirection
-header('location: admin.php');
+header('location: ../views/affichageArchivage.php');
 
 
 ?>

@@ -1,6 +1,5 @@
 
 <?php
-
 /* démarrer les sessions */
 
 /**
@@ -58,7 +57,7 @@ if (isset($_POST['btnConnect'])) {
                     $_SESSION['photo'] = $infoUsers['$photo'];
         
                     //redirection de la personne connecter
-                    if ($infoUsers['roles'] == "Admin") {
+                    if ($infoUsers['roles'] == "Admin" OR $infoUsers['roles'] == "Administrateur") {
                         header('location: ../views/admin.php');
                         exit; 
                     }else {
@@ -75,10 +74,6 @@ if (isset($_POST['btnConnect'])) {
                     exit; 
 
                 }
-
-            
-
-
                 
             } else{
                 $mailPris ='Le mail ne correspond pas à ce compte !';
@@ -86,8 +81,7 @@ if (isset($_POST['btnConnect'])) {
                 exit;
 
             }
-        
-            
+                   
         }else {
             $msgErros ='Ce chmaps est obligatoire !';
 /*             header("location: ../views/connexion.php?success= $msgErrors;");

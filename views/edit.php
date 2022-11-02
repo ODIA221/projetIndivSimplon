@@ -20,7 +20,6 @@ if (isset($_POST['btnModifier'])) {
     $mailModif = htmlspecialchars($_POST['mailModif']);
     $role = htmlspecialchars($_POST['role']);
     $mdpModif = password_hash($_POST['mdpModif'], PASSWORD_DEFAULT);
-   /*  $confirmMdp = ($_POST['confirmMdp']) */;
     $photo = htmlspecialchars($_POST['photo']);
 
 
@@ -46,29 +45,11 @@ if (isset($_POST['btnModifier'])) {
          $upadate = $bd -> query($req); 
         if($upadate){
             header("location: admin.php");
-        }
-  
-
-
-   
-
-
-
-   
+        }  
 }
-
-
-
-
-
 ?>
 
-
-
-
-
-
-
+<!-- formulaire de modification -->
 <div class="container form">
   <!--   <div>
         <H1>Inscription</H1>
