@@ -1,4 +1,10 @@
 <?php
+/*     //sécurité
+    if(!isset($_SESSION['auth'])) {
+        header("location: connexion.php");
+        exit;
+    } */
+
     include_once('../config/bd.php');
     /* les inclusions boostrap */
     include('include.php');

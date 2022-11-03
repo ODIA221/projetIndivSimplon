@@ -1,5 +1,11 @@
 <!-- fichier css et boostrap -->
 <?php
+  /*   //sécurité
+    if(!isset($_SESSION['auth'])) {
+        header("location: connexion.php");
+        exit;
+    } */
+
     include('../config/bd.php');
     include('../controllers/afficherBd.php');
     include('include.php');
@@ -21,7 +27,7 @@
     </div>
     <nav>
     <a class="navbar-brand lienNav" href="#">Liste des archivés</a>
-        <a class="navbar-brand lienNav" href="deconnexion.php">Déconnexion</a>
+        <a class="navbar-brand lienNav" href="../controllers/trtmentDeconnexion.php">Déconnexion</a>
     </nav>
 </div>
 <br>

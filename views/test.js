@@ -36,7 +36,7 @@ document.getElementById("inscription").addEventListener("submit", function(e){
         email.focus(); 
         return false; 
     } 
-    else if (mdpConfirm != mdpIncript) {
+    else if (mdpConfirm !== mdpIncript) {
         e.preventDefault();
         document.getElementById("mdp#").innerHTML = "Mots de passe non Identique !";
         return false;

@@ -4,7 +4,7 @@
 require('../config/bd.php');
 
 //recuperer les élement se trouvant dans dans la base 
-$inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE  etat = 0 limit 10');
+$inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE  etat = 1 /* limit 10 */');
 $inputs -> execute();
 
 $row = $inputs -> fetchALL(PDO::FETCH_ASSOC);
