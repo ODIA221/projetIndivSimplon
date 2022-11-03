@@ -12,8 +12,12 @@ $id = $_GET['id'];
 /* $delete = ("DELETE FROM utilisateur WHERE id = '$id'");
 $execDelete = $bd -> query($delete);
  */
-$etat = 1;
-$mat = ("UPDATE utilisateur SET etat = '$etat' WHERE id = '$id'");
+
+//pour prendre en compte l'heure de modif
+$dateArchive = date('y-m-s');
+
+$etat = 0;
+$mat = ("UPDATE utilisateur SET etat = '$etat', dateArchive = '$dateArchive' WHERE id = '$id'");
 $modifMat = $bd -> query ($mat) ;
 
 //redirection

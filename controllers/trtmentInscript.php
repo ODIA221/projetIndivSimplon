@@ -9,9 +9,6 @@
 */
 require_once("../config/bd.php");
 
-
-
-
 //Traiement du formulaire d'inscrion
 if (isset($_POST['btnInscript'])) {
 

@@ -47,6 +47,10 @@ if (isset($_POST['btnConnect'])) {
                 if (password_verify($mdpConnect, $infoUsers['mdp'])) {
 
                     //autentier user si less identifiants sont bonnes
+        
+                    //redirection de la personne connecter
+                    if ($infoUsers['roles'] == "Admin" OR $infoUsers['roles'] == "Administrateur") {
+
 
                     $_SESSION['auth'] = true;
                     $_SESSION['id'] = $infoUsers['$id'];
@@ -55,9 +59,8 @@ if (isset($_POST['btnConnect'])) {
                     $_SESSION['mail'] = $infoUsers['$mail'];
                     $_SESSION['roles'] = $infoUsers['$roles'];
                     $_SESSION['photo'] = $infoUsers['$photo'];
-        
-                    //redirection de la personne connecter
-                    if ($infoUsers['roles'] == "Admin" OR $infoUsers['roles'] == "Administrateur") {
+
+
                         header('location: ../views/admin.php');
                         exit; 
                     }else {

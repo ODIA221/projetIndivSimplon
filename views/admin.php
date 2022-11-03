@@ -1,5 +1,12 @@
 <!---->
 <?php 
+
+//sécurité
+/*         if(!isset($_SESSION['auth'])) {
+            header("location: connexion.php");
+            exit;
+        } */
+
     /*bd*/
     include_once('../config/bd.php');
     /* les inclusions boostrap */
@@ -7,10 +14,14 @@
     /* les inclusions pour traiment backend */
     include('../controllers/afficherBd.php');
     /**include recherche */
-    include_once("../controllers/trtmntRecherche.php");
+   /*  include_once("../controllers/trtmntRecherche.php"); */
     /* les inclusions sécurité */
 ?>
 <!-- fichier css et boostrap -->
+
+
+
+
 
 
 
@@ -19,18 +30,19 @@
 <div class="container-fluid d-flex align-content-start flex-wrap navBar">
      <!-- photo profil -->
     <div class="profil">
-        <?php
- 
-        ?>
+       
 
     </div>
     <!-- afficer nom et Matricule -->
     <div>
-        <?php
-            /* $id = $_SESSION['id'];
-            $req = $bd -> query("SELECT matricule, nom, prenom FROM utilisateur WHERE id = $id'"); */
-        ?>
-        oumar
+        <div style="display: flex;justify-content: center;align-items:center;">
+            
+          <!--   <?php
+                include('../controllers/trtmentInscript.php');
+               echo $_SESSION['nom'] ? :null; 
+                echo $_SESSION['prenom'] ?  : null; 
+            ?> -->
+        </div>
     </div>
         
     <nav>
@@ -46,7 +58,7 @@
     <!-- barre de recherche -->
     <div class="container table-responsive-sm">
         <div  class="container search">
-            <form class="search" action="" method="GET">
+            <form class="search" method="GET" action="../controllers/trtmntRecherche.php">
                 <input type="search" id="search_emp_input" name="recherche" placeholder="recherche..." required  size=50>
                 <input id="search_emp_button" type="submit" value="recherche" name="btnRecherche">
             </form>
@@ -87,9 +99,11 @@
                                     <path d="M3 36C2.2 36 1.5 35.7 0.9 35.1C0.3 34.5 0 33.8 0 33V6.85C0 6.35 0.0500001 5.925 0.15 5.575C0.25 5.225 0.433333 4.9 0.7 4.6L3.5 0.8C3.76667 0.5 4.075 0.291667 4.425 0.175C4.775 0.0583335 5.18333 0 5.65 0H30.35C30.8167 0 31.2167 0.0583335 31.55 0.175C31.8833 0.291667 32.1833 0.5 32.45 0.8L35.3 4.6C35.5667 4.9 35.75 5.225 35.85 5.575C35.95 5.925 36 6.35 36 6.85V33C36 33.8 35.7 34.5 35.1 35.1C34.5 35.7 33.8 36 33 36H3ZM3.85 5.3H32.1L30.3 3H5.65L3.85 5.3ZM3 8.3V33H33V8.3H3ZM18 28.5L25.8 20.7L23.8 18.7L19.5 23V12.95H16.5V23L12.2 18.7L10.2 20.7L18 28.5ZM3 33H33H3Z" fill="black"/>
                                     </svg>
                                 </a>
-                                <a href="../controllers/trmntSwitcher.php?id=<?=$row['id']?>"><svg width="30" height="35" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 42C8.2 42 7.5 41.7 6.9 41.1C6.3 40.5 6 39.8 6 39V12.85C6 12.35 6.05 11.925 6.15 11.575C6.25 11.225 6.43333 10.9 6.7 10.6L9.5 6.8C9.76667 6.5 10.075 6.29167 10.425 6.175C10.775 6.05833 11.1833 6 11.65 6H36.35C36.8167 6 37.2167 6.05833 37.55 6.175C37.8833 6.29167 38.1833 6.5 38.45 6.8L41.3 10.6C41.5667 10.9 41.75 11.225 41.85 11.575C41.95 11.925 42 12.35 42 12.85V39C42 39.8 41.7 40.5 41.1 41.1C40.5 41.7 39.8 42 39 42H9ZM9.85 11.3H38.1L36.3 9H11.65L9.85 11.3ZM9 14.3V39H39V14.3H9ZM22.5 34.5H25.5V24.45L29.8 28.75L31.8 26.75L24 18.95L16.2 26.75L18.2 28.75L22.5 24.45V34.5ZM9 39H39H9Z" fill="black"/>
+                                <a href="../controllers/trmntSwitcher.php?id=<?=$row['id']?>">
+                                    <svg width="35" height="35" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.65 40L4 30.35L13.65 20.7L15.75 22.8L9.7 28.85H25.5V31.85H9.7L15.75 37.9L13.65 40ZM34.35 27.3L32.25 25.2L38.3 19.15H22.5V16.15H38.3L32.25 10.1L34.35 8L44 17.65L34.35 27.3Z" fill="black"/>
                                     </svg>
+
                                 </a>
                             </td>   
                         </div>   

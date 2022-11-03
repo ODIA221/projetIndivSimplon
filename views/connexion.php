@@ -17,11 +17,11 @@
 
 <!-- erreurs -->
 
-
+<div class="card" align="center" style="color: black ">
+    <H4>CONNEXION</H4>
+  </div>
 <div class="container form">
-<!--       <div class="descTitre">
-        <H1>Connexion</H1>
-    </div> -->
+
     <div class="container">
         <!-- message mail invalide -->
               <small id="mailValide" style="color: red"></small>
@@ -29,14 +29,14 @@
         <!-- Forrmulaire -->
         <form action="../controllers/trtmentConnexion.php"  method="POST" id="connexion" name="connexion">
             <div class="form-group">
-                <label for="mailConnect">Email</label>
+                <label for="mailConnect">Email <SPan style="color: red">*</SPan> </label>
                 <input type="mail" class="form-control" id="mailConnect"  name="mailConnect">
                 
 <?php if (isset($mailPris)) {echo "mail pris !";} ;?>
 
             </div>
             <div class="form-group">
-                <label for="mdpConnect">Mot de passe</label>
+                <label for="mdpConnect">Mot de passe <SPan style="color: red">*</SPan> </label>
                 <input type="password" class="form-control" id="mdpConnect" name="mdpConnect">
             </div>
             <div>

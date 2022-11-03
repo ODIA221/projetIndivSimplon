@@ -10,6 +10,10 @@
 <!-- inclusion controller -->
 
 
+<div class="card" align="center" style="color: black ">
+    <H4>Indcription</H4>
+</div>
+
 <div class="container form">
   <!--   <div>
         <H1>Inscription</H1>
@@ -22,24 +26,25 @@
             <small id="mailValide" style="color: red"></small>
         <!-- message mail invalide -->
 
+
     <form action="../controllers/trtmentInscript.php" method="POST" id="inscription">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="nom">Nom</label>
+                <label for="nom">Nom <SPan style="color: red">*</SPan> </label>
                 <input type="text" class="form-control" name="nom" id="nom">
             </div>
             <div class="form-group col-md-6">
-                <label for="prenom">Prénom</label>
+                <label for="prenom">Prénom <SPan style="color: red">*</SPan> </label>
                 <input type="text" class="form-control" name="prenom" id="prenom">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="mailInscript">Email</label>
+                <label for="mailInscript">Email <SPan style="color: red">*</SPan> </label>
                 <input type="text" class="form-control" name="mailInscript" id="mailInscript">
             </div>
             <div class="form-group col-md-6">
-                <label for="role">Role</label>
+                <label for="role">Role <SPan style="color: red">*</SPan> </label>
                 <select id="role" name="role" class="form-control">
                     <option selected>Admin</option>
                     <option>User</option>
@@ -48,12 +53,15 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="mdpInscript">Mot de passe</label>
+                <label for="mdpInscript">Mot de passe <SPan style="color: red">*</SPan> </label>
                 <input type="password" class="form-control" name="mdpInscript" id="mdpInscript">
             </div>
             <div class="form-group col-md-6">
                 <label for="confirmMdp">Confirmer mot de passe</label>
                 <input type="password" class="form-control" name="confirmMdp" id="confirmMdp">
+                <!-- message mot de pass différent -->
+                    <small id="mdp#" style="color: red"></small>
+                <!-- message mot de pass différent -->
             </div>
         </div>
         <div class="form-row">

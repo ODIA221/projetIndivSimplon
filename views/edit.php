@@ -1,6 +1,12 @@
 
 <!-- inclusion css boostrap -->
 <?php 
+
+/*     //sécurité
+    if(!isset($_SESSION['auth'])) {
+        header("location: connexion.php");
+        exit;
+    } */
     require_once('../config/bd.php');
     include_once("include.php");
 
@@ -34,13 +40,18 @@ if (isset($_POST['btnModifier'])) {
 
         $id = $_GET['id'];
 
+        //pour prendre en compte l'heure de modif
+        $dateModif = date('y-m-s');
+        
+
         $req = "UPDATE utilisateur SET
             nom = '$nom',
             prenom = '$prenom',
             mail = '$mailModif',
             roles = '$role',
             mdp = '$mdpModif',
-            photo = '$photo'
+            photo = '$photo',
+            dateModif = '$dateModif'
             WHERE id = '$id' "; 
          $upadate = $bd -> query($req); 
         if($upadate){
@@ -66,7 +77,7 @@ if (isset($_POST['btnModifier'])) {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nom">Nom</label>
-                <input type="text" class="form-control" name="nom" id="nom" value="<?= '$nom'?>;" >
+                <input type="text" class="form-control" name="nom" id="nom"  >
             </div>
             <div class="form-group col-md-6">
                 <label for="prenom">Prénom</label>
