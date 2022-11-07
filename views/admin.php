@@ -1,6 +1,5 @@
 <!---->
 <?php 
-session_start();
     include_once('../config/bd.php');
     /* les inclusions boostrap */
     include('include.php');
@@ -15,8 +14,6 @@ session_start();
 <div class="container-fluid navBar">
      <!-- photo profil -->
     <div class="profil">
-       
-
     </div>
     <!-- afficer nom et Matricule -->
     <div>
@@ -55,6 +52,7 @@ session_start();
         <br>
     <!-- afficher les éléments de la bases dans un tab -->
 
+    <section class="col-12">
         <table border="1px" class="table">
             <tr>
                 <th>Matricule</th>
@@ -109,28 +107,28 @@ session_start();
     ?>
     </table>
 
-<!--  pagination -->
-<div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+    <!--  pagination -->
+        <div class="container">
+            <nav>
+                <ul class="pagination">
+                    <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                    <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+                        <a href="?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
+                    </li>
+                    <?php for($page = 1; $page <= $pages; $page++): ?>
+                        <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+                        <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                            <a href="?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                        </li>
+                    <?php endfor ?>
+                        <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                        <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                        <a href="?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
 </div>
 
 <!-- /pagination -->
