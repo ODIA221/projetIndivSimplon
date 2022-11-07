@@ -1,33 +1,27 @@
 <!---->
 <?php 
+session_start();
 
 //sécurité
-/*         if(!isset($_SESSION['auth'])) {
+/*        if(!isset($_SESSION['auth'])) {
             header("location: connexion.php");
             exit;
-        } */
+        }  */
 
     /*bd*/
+
     include_once('../config/bd.php');
     /* les inclusions boostrap */
     include('include.php');
     /* les inclusions pour traiment backend */
     include('../controllers/afficherBd.php');
-    /**include recherche */
-   /*  include_once("../controllers/trtmntRecherche.php"); */
-    /* les inclusions sécurité */
+
 ?>
-<!-- fichier css et boostrap -->
-
-
-
-
-
 
 
 <!-- formulaire -->
 <!-- nav -->
-<div class="container-fluid d-flex align-content-start flex-wrap navBar">
+<div class="container-fluid navBar">
      <!-- photo profil -->
     <div class="profil">
        
@@ -35,14 +29,17 @@
     </div>
     <!-- afficer nom et Matricule -->
     <div>
-        <div style="display: flex;justify-content: center;align-items:center;">
-            
-          <!--   <?php
-                include('../controllers/trtmentInscript.php');
-               echo $_SESSION['nom'] ? :null; 
-                echo $_SESSION['prenom'] ?  : null; 
-            ?> -->
-        </div>
+
+        <?php
+            include_once("../controllers/trtmentConnexion.php");
+            @$_SESSION['auth'];
+            if (@$_SESSION['id']) {
+               /* (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) ? ''.$_SESSION['prenom'].' '.$_SESSION['nom'] : null; */
+                echo $_SESSION['nom'];
+                echo $_SESSION['prenom'];
+
+            }
+        ?>
     </div>
         
     <nav>
@@ -52,7 +49,6 @@
 </div>
 <br>
 <br>
-
 <!-- /nav -->
 <!-- main -->
     <!-- barre de recherche -->
@@ -60,7 +56,7 @@
         <div  class="container search">
             <form class="search" method="GET" action="../controllers/trtmntRecherche.php">
                 <input type="search" id="search_emp_input" name="recherche" placeholder="recherche..." required  size=50>
-                <input id="search_emp_button" type="submit" value="recherche" name="btnRecherche">
+                <input id="search_emp_button" type="submit" value="recherche" name="submit">
             </form>
         </div>
 

@@ -2,18 +2,15 @@
     //inclusion bd
     include('../config/bd.php');
 if (isset($_GET)) {
-    # code...
+    /* recupération de l'id dans l'url */
+    $id = $_GET['id'];
 
     //récupération id
     //Rechercher si user existe
     $infoUsers = ('SELECT * FROM utilisateur WHERE id = $id AND etat = 1');
     $infos = $bd -> prepare($infoUsers);
     $info = $infos  -> execute();
-    /* recupération de l'id dans l'url */
-    $id = $_GET['id'];
 
-    /* var_dump($id);
-    die; */
     //afficher les données recupérer dans un tab fetch
    /*  $rows = $infos -> fetch(PDO::FETCH_ASSOC); */
 
@@ -23,7 +20,7 @@ if (isset($_GET)) {
             $switch = $bd -> prepare($roles);
             $switch->execute();
             header("location: ../views/admin.php");   
-        }else /* if($infos['roles'] == "User") */{
+        }else {
             $roles = ("UPDATE utilisateur SET roles = 'Admin' WHERE id = $id AND etat = 1");
             $switch = $bd -> prepare ($roles);
             $switch -> execute();

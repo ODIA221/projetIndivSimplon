@@ -1,6 +1,6 @@
 <?php
     //sécurité
-/*     if(!isset($_SESSION['auth'])) {
+ /*    if(!isset($_SESSION['auth'])) {
         header("location: connexion.php");
         exit;
     }
@@ -8,7 +8,7 @@
 //ilcusion bd
 require_once('../config/bd.php');
 //inclusion ficher traitement
-/* include('../controllers/trtmntRecherche.php'); */
+include('../controllers/trtmntRecherche.php');
 
 ?>
 <br>
@@ -17,13 +17,18 @@ require_once('../config/bd.php');
 
 <!-- pour acceder aux donnees users dans la base -->
  <?php
-        $inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE id = $id AND etat = 1 limit 10');
+        $inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE etat = 1 AND roles = "Admin" OR roles = "User" ');
         $inputs -> execute();
         
-        $row = $inputs -> fetchALL(PDO::FETCH_ASSOC);
+        $rows = $inputs -> fetchALL(PDO::FETCH_ASSOC);
         
     ?>
     <br>
+    <br>
+    <div class="card" align="center" style="color: black ">
+    <H4>Résultat de recherches</H4>
+</div>
+
  
 
 <table border="1px" class="table">
@@ -35,8 +40,8 @@ require_once('../config/bd.php');
         <th>Rôle</th>
     </tr>
 <?php
-if ($row) {
-    foreach($row as $row)
+if ($rows) {
+    foreach($rows as $row)
     {
         ?>
         <div>
@@ -57,7 +62,10 @@ if ($row) {
         <br>
     <?php
     
-}   
+}  
+
+
+
 
 ?>
 

@@ -1,33 +1,26 @@
 
-<!-- inclusion css boostrap -->
 <?php 
+session_start();
 
-/*     //sécurité
-    if(!isset($_SESSION['auth'])) {
+//sécurité
+/*     if(!isset($_SESSION['auth'])) {
         header("location: connexion.php");
         exit;
-    } */
-    require_once('../config/bd.php');
+    }  */
     include_once("include.php");
-
-    
-?>
-<!-- inclusion css boostrap -->
-
-<!-- Modifier  inscription  -->
-<?php
+    include('../controllers/trtmentInscript.php');
 
 if (isset($_POST['btnModifier'])) {
 
     $id = $_GET['id'];
 
-    $nom = htmlspecialchars($_POST['nom']) ;
-    $prenom = htmlspecialchars($_POST['prenom']) ;
-    $mailModif = htmlspecialchars($_POST['mailModif']);
-    $role = htmlspecialchars($_POST['role']);
-    $mdpModif = password_hash($_POST['mdpModif'], PASSWORD_DEFAULT);
-    $photo = htmlspecialchars($_POST['photo']);
 
+    $nomModif = htmlspecialchars($_POST['nom']) ;
+    $prenomModif = htmlspecialchars($_POST['prenom']) ;
+    $mailModif = htmlspecialchars($_POST['mailModif']);
+    $roleModif = htmlspecialchars($_POST['role']);
+    $mdpModif = password_hash($_POST['mdpModif'], PASSWORD_DEFAULT);
+    $photoModif = htmlspecialchars($_POST['photo']);
 
 
     //Rechercher si user existe
@@ -45,12 +38,12 @@ if (isset($_POST['btnModifier'])) {
         
 
         $req = "UPDATE utilisateur SET
-            nom = '$nom',
-            prenom = '$prenom',
+            nom = '$nomModif',
+            prenom = '$prenomModif',
             mail = '$mailModif',
-            roles = '$role',
+            roles = '$roleModif',
             mdp = '$mdpModif',
-            photo = '$photo',
+            photo = '$photoModif',
             dateModif = '$dateModif'
             WHERE id = '$id' "; 
          $upadate = $bd -> query($req); 
@@ -77,7 +70,7 @@ if (isset($_POST['btnModifier'])) {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nom">Nom</label>
-                <input type="text" class="form-control" name="nom" id="nom"  >
+                <input type="text" class="form-control" name="nom" id="nom" value="<?= $_POST['nom']; ?>" >
             </div>
             <div class="form-group col-md-6">
                 <label for="prenom">Prénom</label>
@@ -117,8 +110,8 @@ if (isset($_POST['btnModifier'])) {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-primary" name="btnModifier">Modifier</button>
-                <!-- ||
-                <span><a href="connexion.php">Se connecter</a></span> -->
+                ||
+                <span><a href="admin.php">Retour</a></span>
             </div>
         </div>
         

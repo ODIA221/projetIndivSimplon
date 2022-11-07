@@ -27,7 +27,7 @@
         <!-- message mail invalide -->
 
 
-    <form action="../controllers/trtmentInscript.php" method="POST" id="inscription">
+    <form action="../controllers/trtmentInscript.php" method="POST" id="inscription" enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nom">Nom <SPan style="color: red">*</SPan> </label>
