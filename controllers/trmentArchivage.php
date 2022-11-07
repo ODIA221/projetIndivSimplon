@@ -17,7 +17,7 @@ $execDelete = $bd -> query($delete);
 $dateArchive = date('y-m-s');
 
 $etat = 0;
-$mat = ("UPDATE utilisateur SET etat = '$etat', dateArchive = '$dateArchive' WHERE id = '$id'");
+$mat = ("UPDATE utilisateur SET etat = '$etat', dateArchive = '$dateArchive' WHERE id = '$id' ORDER BY id DESC");
 $modifMat = $bd -> query ($mat) ;
 
 //redirection
