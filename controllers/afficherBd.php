@@ -34,10 +34,10 @@ $pages = ceil($nbUsers / $parPage);
 // Calcul du 1er article de la page
 $premier = ($currentPage * $parPage) - $parPage;
 
-$sql = 'SELECT * FROM `utilisateur` ORDER BY `id`  DESC LIMIT :premier, :parpage ;';
+/*$sql = 'SELECT * FROM `utilisateur` ORDER BY `id`  DESC LIMIT :premier, :parpage ;';
 
 // On prépare la requête
-$query = $bd->prepare($sql);
+$query = $bd->prepare($sql);*/
 
 
 
@@ -52,20 +52,23 @@ if (@$_GET['submit']) {
     $inputs -> execute(['nom' => $search]);
 }else {
     //recuperer les élement se trouvant dans dans la base 
-    $inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE  etat = 1 ORDER BY id DESC LIMIT 5');
+    $inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE  etat = 1 ORDER BY id DESC LIMIT :premier, :parpage');
     $inputs -> execute();
+
+  /*   var_dump($inputs);
+    die; */
 }
-$row = @$inputs -> fetchALL(PDO::FETCH_ASSOC);
+/* $row = @$inputs -> fetchALL(PDO::FETCH_ASSOC) */;
 
 //........................
 
-$query->bindValue(':premier', $premier, PDO::PARAM_INT);
-$query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+@$inputs->bindValue(':premier', $premier, PDO::PARAM_INT);
+@$inputs->bindValue(':parpage', $parPage, PDO::PARAM_INT);
 
 // On exécute
-$query->execute();
+@$inputs->execute();
 
 // On récupère les valeurs dans un tableau associatif
-$users = $query->fetchAll(PDO::FETCH_ASSOC);
+$row = @$inputs->fetchAll(PDO::FETCH_ASSOC);
 
 require_once('../views/admin.php');
