@@ -1,15 +1,6 @@
 <!---->
 <?php 
 session_start();
-
-//sécurité
-/*        if(!isset($_SESSION['auth'])) {
-            header("location: connexion.php");
-            exit;
-        }  */
-
-    /*bd*/
-
     include_once('../config/bd.php');
     /* les inclusions boostrap */
     include('include.php');
@@ -54,7 +45,7 @@ session_start();
     <!-- barre de recherche -->
     <div class="container table-responsive-sm">
         <div  class="container search">
-            <form class="search" method="GET" action="../controllers/trtmntRecherche.php">
+            <form class="search" method="GET" action="">
                 <input type="search" id="search_emp_input" name="recherche" placeholder="recherche..." required  size=50>
                 <input id="search_emp_button" type="submit" value="recherche" name="submit">
             </form>
