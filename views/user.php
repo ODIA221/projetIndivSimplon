@@ -11,6 +11,8 @@
     include('../config/bd.php');
     include('../controllers/afficherBd.php');
     include('include.php');
+    /* les inclusions pour traiment backend */
+    include('../controllers/afficherBd.php');
 
 
 
@@ -60,7 +62,7 @@
         <div  class="container search">
             <form class="search" action="" method="GET">
                 <input type="search" id="search_emp_input" name="recherche" placeholder="recherche..." required  size=50>
-                <input id="search_emp_button" type="submit" value="recherche" name="btnRecherche">
+                <input id="search_emp_button" type="submit" value="recherche" name="submit">
             </form>
 <!--résultat recherche-->
 <?php
