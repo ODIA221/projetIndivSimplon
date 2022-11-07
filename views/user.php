@@ -85,7 +85,7 @@
     </table>
 
 <!--  pagination -->
-<div>
+<div class="container">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
