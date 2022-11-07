@@ -1,24 +1,20 @@
 <?php
     //inclusion bd
     include('../config/bd.php');
-if (isset($_GET)) {
     /* recupération de l'id dans l'url */
-    //récupération id
     $id = (int) $_GET['id'];
 
-
+    //récupération id
     //Rechercher si user existe
-    $infoUsers =  $bd -> query('SELECT * FROM utilisateur WHERE id = "$id" AND etat = 1');
- /*    $infos = $bd -> prepare($infoUsers);
-    $info = $infos  -> execute(); */
+    $infoUsers = ("SELECT * FROM utilisateur WHERE id = '$id' AND etat = 1");
+    $infos = $bd -> prepare($infoUsers);
+    $infos  -> execute();
 
     //afficher les données recupérer dans un tab fetch
-    $rows = $infoUsers -> fetchALL();
-/*     var_dump($rows );
-    var_dump($_GET);
-    die; */
+    $rows = $infos -> fetch(PDO::FETCH_ASSOC);
+
         //requete udpdate roles
-        if ($info['roles'] == "Admin") {
+        if ($rows['roles'] == "Admin") {
             $roles = ("UPDATE utilisateur SET  roles = 'User' WHERE id = '$id' AND etat = 1 ");
             $switch = $bd -> prepare($roles);
             $switch->execute();
@@ -31,5 +27,4 @@ if (isset($_GET)) {
             $switch -> execute();
             header("location: ../views/admin.php"); 
         }
-}
 ?>

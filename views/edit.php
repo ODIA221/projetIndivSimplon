@@ -70,7 +70,7 @@ if (isset($_POST['btnModifier'])) {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nom">Nom</label>
-                <input type="text" class="form-control" name="nom" id="nom" value="<?= $_POST['nom']; ?>" >
+                <input type="text" class="form-control" name="nom" id="nom" value="<?= $nomModif; ?>" >
             </div>
             <div class="form-group col-md-6">
                 <label for="prenom">Prénom</label>
