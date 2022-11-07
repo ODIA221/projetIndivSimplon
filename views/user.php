@@ -15,33 +15,13 @@
     include('../controllers/afficherBd.php');
 
 
-
-
-    //resultats recherche
-    @$keyword = $_GET['$recherche'];
-    @$valider = $_GET['$btnRecherche'];
-    if (isset($valider) && !empty(trim($keyword))) {
-    $reccherche = $bd -> preapare("SELECT matricule , nom, prenom, mail, roles  FROM utilisateur WHERE etat = 1 AND (matricule LIKE '%$keyword%'  OR  nom LIKE '%$keyword%' OR prenom LIKE '%$keyword%' OR  mail LIKE '%$keyword%' OR roles LIKE '%$keyword%') ");
-    $reccherche -> setFetchMode(PDO::FETCH_ASSOC);
-    $reccherche -> execute();
-    $tabRecheche -> fetchALL();
-
-    $afficher = true;
-
-    var_dump($tabRecheche);
-    var_dump($_GET);
-    die;
-    
-    }
 ?>
 <!-- fichier css et boostrap -->
 
 
 
 <!-- formulaire -->
-
 <!-- nav -->
-
 <div class="container-fluid navBar">
      <!-- photo profil -->
     <div class="profil">
@@ -64,23 +44,7 @@
                 <input type="search" id="search_emp_input" name="recherche" placeholder="recherche..." required  size=50>
                 <input id="search_emp_button" type="submit" value="recherche" name="submit">
             </form>
-<!--résultat recherche-->
-<?php
-if (@$afficher) {
-?>
-<div id="resultat"> 
-        <div id="nbr"> 2 Résultats trouvés</div>
-        <hr>
-        <ol>
-            <li>Résultat 1</li>
-        </ol>
-        </div>
-        <hr>
-<?php } ?>
 
-
-
-<!--résultat-->
         </div>
         <br>
         <br>
