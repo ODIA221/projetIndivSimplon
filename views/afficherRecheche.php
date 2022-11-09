@@ -10,6 +10,7 @@ require_once('../config/bd.php');
 //inclusion ficher traitement
 include('../controllers/trtmntRecherche.php');
 
+
 ?>
 <br>
 <br>

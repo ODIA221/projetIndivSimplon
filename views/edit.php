@@ -10,6 +10,7 @@ session_start();
     include_once("include.php");
     include('../controllers/trtmentInscript.php');
 
+
 if (isset($_POST['btnModifier'])) {
 
     $id = $_GET['id'];
@@ -96,16 +97,16 @@ if (isset($_POST['btnModifier'])) {
                 <input type="password" class="form-control" name="mdpModif" id="mdpInscript" >
             </div>
             <div class="form-group col-md-6">
-                <label for="confirmMdp">Confirmer mot de passe</label>
-                <input type="password" class="form-control" name="confirmMdp" id="confirmMdp" >
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
                 <label for="photo">Ajouter un photo</label>
                 <input type="file" class="form-control" id="photo" name="photo">
             </div>
         </div>
+        <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="photo">Ajouter un photo</label>
+                <input type="file" class="form-control" id="photo" name="photo">
+            </div>
+        </div> -->
 
         <div class="form-row">
             <div class="form-group col-md-6">

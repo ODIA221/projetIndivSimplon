@@ -7,6 +7,7 @@
     include_once('../controllers/archivageBd.php');
     /* les inclusions boostrap */
     include('include.php');
+
     
 ?>
 <!-- 

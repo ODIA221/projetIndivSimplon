@@ -44,7 +44,6 @@ $query = $bd->prepare($sql);*/
 
 
 
-
 //.........................
 
 if (@$_GET['submit']) {
@@ -55,7 +54,7 @@ if (@$_GET['submit']) {
     $inputs -> execute(['nom' => $search]);
 }else {
     //recuperer les élement se trouvant dans dans la base 
-    $inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE  etat = 1  ORDER BY id DESC LIMIT :premier, :parpage');
+    $inputs = $bd -> prepare('SELECT * FROM utilisateur  WHERE  etat = 1 ORDER BY id DESC LIMIT :premier, :parpage');
     $inputs -> execute();
 }
 /* $row = @$inputs -> fetchALL(PDO::FETCH_ASSOC) */;
@@ -71,4 +70,4 @@ if (@$_GET['submit']) {
 // On récupère les valeurs dans un tableau associatif
 $row = @$inputs->fetchAll(PDO::FETCH_ASSOC);
 
-require_once('../views/admin.php');
+require_once('../views/user.php');
