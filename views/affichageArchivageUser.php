@@ -7,6 +7,8 @@
     include_once('../controllers/archivageBd.php');
     /* les inclusions boostrap */
     include('include.php');
+        //sécurity
+        include('security.php');
     
 ?>
     <div class="card" align="center" style="color: black ">

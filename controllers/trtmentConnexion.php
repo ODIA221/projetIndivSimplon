@@ -33,7 +33,7 @@ if (isset($_POST['btnConnect'])) {
             }
 
             //Rechercher si user existe
-            $chearch = $bd -> prepare('SELECT * FROM utilisateur WHERE mail = ?  ');
+            $chearch = $bd -> prepare('SELECT * FROM utilisateur WHERE etat = 1 AND mail = ? ');
             $chearch -> execute(array($mailConnect));
 
 
@@ -42,6 +42,7 @@ if (isset($_POST['btnConnect'])) {
 
                 //afficher les users recupérer via id
                 $infoUsers = $chearch -> fetch();
+
 
                 //vérifier si le mdp entrer correspond au mdp hasher
                 if (password_verify($mdpConnect, $infoUsers['mdp'])) {
@@ -52,14 +53,14 @@ if (isset($_POST['btnConnect'])) {
                     if ($infoUsers['roles'] == "Admin" OR $infoUsers['roles'] == "Administrateur") {
 
 
-                    $_SESSION['auth'] = true;
-                    $_SESSION['id'] = $infoUsers['$id'];
-                    $_SESSION['nom'] = $infoUsers['$nom'];
-                    $_SESSION['prenom'] = $infoUsers['$prenom'];
-                    $_SESSION['mail'] = $infoUsers['$mail'];
-                    $_SESSION['roles'] = $infoUsers['$roles'];
-                    $_SESSION['photo'] = $infoUsers['$photo'];
-
+                        session_start();
+                        $_SESSION['auth'] = true;
+                        $_SESSION['id'] = $infoUsers['id'];
+                        $_SESSION['nom'] = $infoUsers['$nom'];
+                        $_SESSION['prenom'] = $infoUsers['$prenom'];
+                        $_SESSION['mail'] = $infoUsers['$mail'];
+                        $_SESSION['roles'] = $infoUsers['$roles'];
+                        $_SESSION['photo'] = $infoUsers['$photo'];
 
                         header('location: ../views/admin.php');
                         exit; 
@@ -72,6 +73,7 @@ if (isset($_POST['btnConnect'])) {
                     
                 }else {
                     $msgErros ='Votre mot de passe est incorrect !';
+                    $msgErros1 ="Ce compte n'existe pas !";
                     //redirection de la personne connecter
                     header('location: ../views/connexion.php');
                     exit; 
