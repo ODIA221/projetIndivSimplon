@@ -13,6 +13,12 @@ document.getElementById("connexion").addEventListener("submit", function(e){
             
         }
     }
+    if (errors) {
+        e.preventDefault();
+        document.getElementById("errors").innerHTML = errors;
+        return false;
+
+    }
 
     if (email.value.indexOf("@", 0) < 0)                 
     { 

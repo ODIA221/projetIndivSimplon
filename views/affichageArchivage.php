@@ -18,12 +18,19 @@
    <!-- bontton retour -->
    <br>
    <div>
-        <a href="admin.php">retour</a>
-    </div>
     <br><br>
     <!-- barre de recherche -->
     <div class="container table-responsive-sm">
+        
         <div  class="container search">
+            <!-- Boutton fermer -->   
+            <div>
+                <a href="admin.php">
+                    <svg width="20" height="20" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.00624 35.0625L0.643738 32.4375L13.6375 18L0.643738 3.5625L3.00624 0.9375L16 15.375L28.9937 0.9375L31.3562 3.5625L18.3625 18L31.3562 32.4375L28.9937 35.0625L16 20.625L3.00624 35.0625Z" fill="#FF0000"/>
+                    </svg>
+                </a>
+            </div>
             <form class="search" action="" method="POST">
                 <input type="search" id="search_emp_input" name="recherche" placeholder="recherche..." required  size=50>
                 <input id="search_emp_button" type="submit" value="recherche" name="btnRecherche">
@@ -40,6 +47,7 @@
                 <th>Prénom</th>
                 <th>Email</th>
                 <th>Rôle</th>
+                <th>Date archiv</th>
                 <th>Actions</th>
             </tr>
         <?php
@@ -54,6 +62,7 @@
                         <td><?= $row['prenom']; ?></td>
                         <td><?= $row['mail']; ?></td>
                         <td><?= $row['roles']; ?></td>
+                        <td><?= $row['dateArchive']; ?></td>
                         <div id="alignItems">
                             <td >
                                 <a href="../controllers/trmntDesarchiver.php?id=<?=$row['id']?>"><svg width="30" height="35" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

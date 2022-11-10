@@ -40,26 +40,19 @@
                 <input type="password" class="form-control" id="mdpConnect" name="mdpConnect">
             </div>
             <div>
-                <button type="submit" class="btn btn-primary" name="btnConnect" onclick=" conroleMail()">Se conneecter</button>
+                <button type="submit" class="btn btn" name="btnConnect" onclick=" conroleMail()" style="background-color: #B9B2B2; color: #FFFFFF"><b>Se conneecter</b></button>
                 ||
                 <a href="inscription.php">S'inscription</a>
             </div>
         </form>
         <div>
-            <?php
-            if (isset($msgErros)) {
-                echo '<p>' .$msgErros . '</p>';
-            }else{
-                ?>
                     <!-- message connexion réeussie -->
                     <small id="success" style="color: green"></small>
                     <!-- message connexion réeussie -->
                     <!-- message erreur chmps vide -->
                     <small id="errors" style="color: red"></small>
                     <!-- message erreur chmps vide -->
-                <?php
-            }
-            ?>
+        
         </div>
 
     </div>
