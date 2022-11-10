@@ -32,10 +32,7 @@
             if (isset($_SESSION['id'])) {
                 $idUser = $_SESSION['id'];        
                 $select = $bd -> query("SELECT photo FROM `utilisateur` WHERE id = $idUser AND etat = 1");
-                $rowPhoto =$select -> fetch();
-
-                echo $idUser;
-                
+                $rowPhoto =$select -> fetch();                
 
             }
 

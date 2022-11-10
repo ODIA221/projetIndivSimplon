@@ -53,7 +53,7 @@ if (isset($_POST['btnModifier'])) {
 
 //Pour recupérer les informations à modifier 
 //dans les champs
-if (isset($_SESSION['auth'])) {
+if (isset($_SESSION['id'])) {
     $idAdmin = $_SESSION['id'];        
     $select = $bd -> query("SELECT * FROM `utilisateur` WHERE id = $idAdmin AND etat = 1");
     $rows =$select -> fetch();
@@ -78,19 +78,19 @@ if (isset($_SESSION['auth'])) {
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="nom">Nom</label>
-                <input type="text" class="form-control" name="nom" id="nom" value="<?=@$rows['nom']?>" >
+                <input type="text" class="form-control" name="nom" id="nom" value="<?=$rows['nom']?>" >
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="prenom">Prénom</label>
-                <input type="text" class="form-control" name="prenom" id="prenom" value="<?=@$rows['prenom']?>" >
+                <input type="text" class="form-control" name="prenom" id="prenom" value="<?=$rows['prenom']?>" >
             </div>           
         </div>
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="mailModif">Email</label>
-                <input type="text" class="form-control" name="mailModif" id="mailInscript" value="<?=@$rows['mail']?>" >
+                <input type="text" class="form-control" name="mailModif" id="mailInscript" value="<?=$rows['mail']?>" >
 
             </div>
         </div>
