@@ -5,8 +5,8 @@ document.getElementById("inscription").addEventListener("submit", function(e){
     var errors ;
     var inputs = document.getElementsByTagName("input");
     var email = document.getElementById("mailInscript");  
-    var mdpIncript = document.getElementById("mdpIncript");  
-    var mdpConfirm = document.getElementById("mdpConfirm"); 
+    var mdpInscript = document.getElementById("mdpInscript");  
+    var mdpConfirm = document.getElementById("confirmMdp"); 
 
 
     for (let i = 0; i< inputs.length -1; i++) {
@@ -36,14 +36,14 @@ document.getElementById("inscription").addEventListener("submit", function(e){
         email.focus(); 
         return false; 
     } 
-    else if (mdpConfirm !== mdpIncript) {
+    else if (mdpInscript.value !== mdpConfirm.value) {
         e.preventDefault();
-        document.getElementById("mdp#").innerHTML = "Mots de passe non Identique !";
+        document.getElementById("mdpDiferrent").innerHTML = "Mots de passe non Identique !";
         return false;
 
     }
     else{
-        setTimeout(document.getElementById("success").innerHTML = "connexion Réussie !", 10000);
+        setTimeout(document.getElementById("success").innerHTML = "connexion Réussie !", 1000000);
         
 
     }

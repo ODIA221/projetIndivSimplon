@@ -22,40 +22,10 @@ if (isset($_POST['btnInscript'])) {
             $mailInscript = htmlspecialchars($_POST['mailInscript']);
             $role = htmlspecialchars($_POST['role']);
             $mdpInscript = password_hash($_POST['mdpInscript'], PASSWORD_DEFAULT);
-            $photo = htmlspecialchars($_POST['photo']);
+            $photo = $_FILES['photo'];
 
-                         //insertion tofs profiles
-                       /*      $tailleMax = 2097152;
-                            $extensionValid = array("jpg, jpg, pnp, gif");
-                                if ($_FILES['photo']['size'] <= $tailleMax) {
-                                    $extensionUpload = strtolower(substr(strrchr($_FILES['photo'], '.'), 1));
-                                    if (in_array($extensionUpload, $extensionValid)) {
-                                        $chemin = "images/". $_SESSION['id']. "." .$extensionUpload ;
-        
-                                        $deplacerVersServers = move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);
-        
-                                        if ($deplacerVersServers) {
-                                            $update = $bd -> prepare("UPDATE utilisateur SET photo = :photo WHERE id = :id");
-                                            $update = execute(array(
-                                                'photo' => $_SESSION['id']. "." .$extensionUpload,
-                                                'id' => $_SESSION['id']
-                                            ));
-                                            header("location: ../views/connexion.php");
-        
-                                        }else {
-                                            $msgErrors = "Erreur survenue lors de l'importation! Veuiller réessayer";
-                                        }
-                                    }else {
-                                        $msgErrors = "pgp, jpeg, jpg, gif sont les format accptés !";
-                                    }
-                                    
-                                }else {
-                                    $msgErrors = "la taille de la photo ne peut pas dépasser 2Mo";
-                                } */
-                        //fin insertion tofs profiles 
 
-            //afficher les données recuperer
-            //echo("$nom, $prenom, $mailInscript, $role, $mdpInscript, $photo");
+;
              //Vérification format du mail
              if (!filter_var($mailInscript, FILTER_VALIDATE_EMAIL)){
                 $error = "email incorrect";

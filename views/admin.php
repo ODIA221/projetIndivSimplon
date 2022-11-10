@@ -1,5 +1,10 @@
 <!---->
 <?php 
+    session_start();
+    if(!isset($_SESSION['auth'])) {
+        header("location: connexion.php");
+        exit;}
+ 
     include_once('../config/bd.php');
     /* les inclusions boostrap */
     include('include.php');
@@ -18,7 +23,7 @@
     <?php
         if (isset($_SESSION['id'])) {
             $idAdmin = $_SESSION['id'];        
-            $select = $bd -> query("SELECT photo FROM `utilisateur` WHERE id = $idAdmin");
+            $select = $bd -> query("SELECT photo FROM `utilisateur` WHERE id = $idAdmin AND etat = 1");
             $rowPhoto =$select -> fetch();
 
         }

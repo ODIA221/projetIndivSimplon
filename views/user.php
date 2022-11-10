@@ -1,4 +1,4 @@
-<!-- fichier css et boostrap -->
+
 <?php
    //sécurité
 /*     if(!isset($_SESSION['auth'])) {
@@ -31,8 +31,11 @@
         <?php
             if (isset($_SESSION['id'])) {
                 $idUser = $_SESSION['id'];        
-                $select = $bd -> query("SELECT photo FROM `utilisateur` WHERE id = $idUser");
+                $select = $bd -> query("SELECT photo FROM `utilisateur` WHERE id = $idUser AND etat = 1");
                 $rowPhoto =$select -> fetch();
+
+                echo $idUser;
+                
 
             }
 
@@ -47,11 +50,17 @@
 
     <!-- Indos du user connecté -->
     <div style="color: #FFFFFF;">
- 
+
+        <?php
+           
+            $select = $bd -> query("SELECT id, matricule, nom, prenom FROM `utilisateur` WHERE etat = 1 AND id = $idUser");
+            $rows =$select -> fetch();
+            echo $rows['prenom']. " ". $rows['nom']  ?> <br> <?=  $rows['matricule'] ; 
+           
+        ?>
     </div>
 
     <nav>
-    <a class="navbar-brand lienNav" href="affichageArchivageUser.php">Liste des archivés</a>
         <a class="navbar-brand lienNav" href="../controllers/trtmentDeconnexion.php">
             <svg width="20" height="20" viewBox="0 0 46 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.83333 56C2.81111 56 1.91667 55.5333 1.15 54.6C0.383333 53.6667 0 52.5778 0 51.3333V4.66667C0 3.42222 0.383333 2.33333 1.15 1.4C1.91667 0.466667 2.81111 0 3.83333 0H22.425V4.66667H3.83333V51.3333H22.425V56H3.83333ZM34.8833 41.6111L32.1361 38.2667L38.6528 30.3333H16.2917V25.6667H38.525L32.0083 17.7333L34.7556 14.3889L46 28.0778L34.8833 41.6111Z" fill="white"/>
@@ -85,7 +94,7 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Email</th>
-                <th>Rôle</th>
+                <th>Date inscription</th>
             </tr>
         <?php
         
@@ -94,11 +103,17 @@
             {
                 ?>
                     <tr>
-                        <td><?= $row['matricule']; ?></td>
-                        <td><?= $row['nom']; ?></td>
-                        <td><?= $row['prenom']; ?></td>
-                        <td><?= $row['mail']; ?></td>
-                        <td><?= $row['roles']; ?></td>
+                        <?php
+                            if ($row['id'] != $idUser) { ?>
+                                <td><?= $row['matricule']; ?></td>
+                                <td><?= $row['nom']; ?></td>
+                                <td><?= $row['prenom']; ?></td>
+                                <td><?= $row['mail']; ?></td>
+                                <td><?= $row['dateAjout']; ?></td>
+                             
+                            <?php
+                            }
+                            ?>
                     </tr>
                 <?php
             }                            

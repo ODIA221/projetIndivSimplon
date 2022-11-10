@@ -15,12 +15,9 @@
 </div>
 
 <div class="container form">
-  <!--   <div>
-        <H1>Inscription</H1>
-    </div> -->
     <div class="container">
         <!-- message mot de pass différent -->
-            <small id="mdp#" style="color: red"></small>
+            <small id="mdpDiferrent" style="color: red"></small>
         <!-- message mot de pass différent -->
         <!-- message mail invalide -->
             <small id="mailValide" style="color: red"></small>
@@ -57,7 +54,7 @@
                 <input type="password" class="form-control" name="mdpInscript" id="mdpInscript">
             </div>
             <div class="form-group col-md-6">
-                <label for="confirmMdp">Confirmer mot de passe</label>
+                <label for="confirmMdp">Confirmer mot de passe <SPan style="color: red">*</SPan></label>
                 <input type="password" class="form-control" name="confirmMdp" id="confirmMdp">
                 <!-- message mot de pass différent -->
                     <small id="mdp#" style="color: red"></small>
@@ -67,13 +64,13 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="photo">Ajouter un photo</label>
-                <input type="file" class="form-control" id="photo" name="photo">
+                <input type="file" class="form-control" id="photo" name="photo" accept=".png, .jpg, .jpeg, gif">
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-primary" name="btnInscript">S'inscrire</button>
+                <button type="submit" class="btn btn" name="btnInscript" style="background-color: #B9B2B2; color: #FFFFFF"><b>S'inscrire</b></button>
                 ||
                 <span><a href="connexion.php">Se connecter</a></span>
             </div>
