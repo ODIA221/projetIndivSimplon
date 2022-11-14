@@ -143,7 +143,7 @@ if (isset($_SESSION['id'])) {
 <!-- footer -->
 <div class="container-fluid footer">
 <nav>
-    user
+    @user
 </nav>
 </div>
 
