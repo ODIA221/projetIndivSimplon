@@ -28,33 +28,20 @@
 <div class="container-fluid navBar">
      <!-- photo profil -->
     <div class="profil">
-        <?php
-            if (isset($_SESSION['id'])) {
-                $idUser = $_SESSION['id'];        
-                $select = $bd -> query("SELECT photo FROM `utilisateur` WHERE id = $idUser AND etat = 1");
-                $rowPhoto =$select -> fetch();                
-
-            }
-
-        ?>
-        <!-- Importation img -->
-        <img src="data:image/jpg;charset=utf8;base64,
-            <?php echo base64_encode($rowPhoto['photo'])     ?>" 
-            alt="" srcset="" height=100% width=100% border-radius= 100%
-        >
-    
+        
     </div>
 
     <!-- Indos du user connecté -->
     <div style="color: #FFFFFF;">
 
-        <?php
+     <?php 
+if (isset($_SESSION['id'])) {
+            $idAdmin = $_SESSION['id']; 
            
-            $select = $bd -> query("SELECT id, matricule, nom, prenom FROM `utilisateur` WHERE etat = 1 AND id = $idUser");
+            $select = $bd -> query("SELECT * FROM `utilisateur` WHERE etat = 1 AND id = $idAdmin");
             $rows =$select -> fetch();
-            echo $rows['prenom']. " ". $rows['nom']  ?> <br> <?=  $rows['matricule'] ; 
-           
-        ?>
+            echo $rows['prenom']. " ". $rows['nom']  ?> <br> <?=  $rows['matricule'] ; }
+        ?> 
     </div>
 
     <nav>
@@ -101,7 +88,7 @@
                 ?>
                     <tr>
                         <?php
-                            if ($row['id'] != $idUser) { ?>
+                            if ($row['id'] != $idAdmin) { ?>
                                 <td><?= $row['matricule']; ?></td>
                                 <td><?= $row['nom']; ?></td>
                                 <td><?= $row['prenom']; ?></td>
